@@ -1,0 +1,816 @@
+#: import gch kivy.utils.get_color_from_hex
+WindowManager:
+    MainWindow:
+    LoginWindow:
+    SignInWindow:
+    OptionsWindow:
+    AboutWindow:
+    ListOptionsWindow:
+    AddingTask:
+    TaskShow:
+    DeleteTask:
+    CalendarWindow:
+    FinishTask:
+<MainWindow>:
+    name: "main"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/Clouds1.jpg'
+    BoxLayout:
+        id: maincard
+        size_hint: 0.8, 0.8
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 25
+        padding: 25
+        spacing: 40
+        orientation: 'vertical'
+        background_color: hex('#674ea7')
+        MDLabel:
+            id: logo
+            text: "T O      D O     L I S T"
+            font_size: 80
+            font_name: 'fonts/Bock_Personaluse.otf'
+            halign: 'center'
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 15
+        MDRoundFlatButton:
+            id: loginbutton
+            text: "Login"
+            font_size: 36
+            font_name: 'fonts/Bock_Personaluse.otf'
+            size_hint: 1, 2
+            pos_hint: {"center_x": 0.5}
+            on_release: root.on_login_click()
+        MDRoundFlatButton:
+            id: signinbutton
+            text: "Sign in"
+            font_size: 36
+            font_name: 'fonts/Bock_Personaluse.otf'
+            size_hint: 1, 2
+            pos_hint: {"center_x": 0.5}
+            on_release: root.on_signin_click()
+        MDRoundFlatButton:
+            text: "Options"
+            font_size: 36
+            font_name: 'fonts/Bock_Personaluse.otf'
+            size_hint: 1, 2
+            pos_hint: {"center_x": 0.5}
+            on_press: root.on_options_click()
+        MDRoundFlatButton:
+            text: "About"
+            font_size: 36
+            font_name: 'fonts/Bock_Personaluse.otf'
+            size_hint: 1, 2
+            pos_hint: {"center_x": 0.5}
+            on_release: app.root.current = "about"
+        MDRoundFlatButton:
+            text: "Quit"
+            font_size: 36
+            font_name: 'fonts/Bock_Personaluse.otf'
+            size_hint: 1, 2
+            pos_hint: {"center_x": 0.5}
+            on_press: root.on_quit_click()
+
+
+<LoginWindow>:
+    name: "login"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/Clouds2.jpg'
+    BoxLayout:
+        id: card
+        size_hint: 0.8, 0.8
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+        MDLabel:
+            id: welcome
+            text: "LOGIN"
+            font_size: 90
+            color: hex('#674ea7')
+            font_name: 'fonts/Bock_Personaluse.otf'
+            halign: 'center'
+            height: self.texture_size[1]
+            padding_y: 15
+        MDTextFieldRound:
+            id: user
+            font_name: 'fonts/unispace.ttf'
+            hint_text: "username"
+            icon_right: "account"
+            size_hint: 0.6, 0.3
+            font_size: 25
+            pos_hint: {"center_x": 0.5}
+        MDTextFieldRound:
+            id: passw
+            font_name: 'fonts/unispace.ttf'
+            hint_text: "password"
+            icon_right: "eye-off"
+            size_hint: 0.6, 0.3
+            width: 200
+            font_size: 25
+            pos_hint: {"center_x": 0.5}
+            password: True
+        MDRoundFlatButton:
+            font_name: 'fonts/Bock_Personaluse.otf'
+            text: "Accept"
+            font_size: 50
+            size_hint: 0.3, 0.1
+            pos_hint: {"center_x": 0.5}
+            on_press: self.parent.parent.login()
+        MDRoundFlatButton:
+            font_name: 'fonts/Bock_Personaluse.otf'
+            text: "Clear"
+            font_size: 50
+            size_hint: 0.3, 0.1
+            pos_hint: {"center_x": 0.5}
+            on_press: self.parent.parent.clear()
+        MDFillRoundFlatButton:
+            font_name: 'fonts/Bock_Personaluse.otf'
+            text: "Back"
+            font_size: 36
+            size_hint: 0.3, 0.1
+            pos_hint: {"center_x": 0.5}
+            on_release: app.root.current = "main"
+        Widget:
+            size_hint_y: None
+            height: 10
+
+<SignInWindow>:
+    name: "signin"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/Clouds2.jpg'
+    BoxLayout:
+        id: card
+        size_hint: 0.8, 0.8
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+        MDLabel:
+            id: welcome_signin
+            text: "SIGN IN TO YOUR TO DO LIST"
+            font_size: 90
+            color: hex('#674ea7')
+            font_name: 'fonts/Bock_Personaluse.otf'
+            halign: 'center'
+            height: self.texture_size[1]
+            padding_y: 15
+        MDTextFieldRound:
+            id: name
+            font_name: 'fonts/unispace.ttf'
+            hint_text: "Your name and surname"
+            icon_right: "human"
+            size_hint: 0.6, 0.3
+            color_active: gch("#7e10cc")
+		    normal_color: gch("#3b0660")
+            font_size: 25
+            pos_hint: {"center_x": 0.5}
+        MDTextFieldRound:
+            id: tel
+            font_name: 'fonts/unispace.ttf'
+            hint_text: "cellphone"
+            icon_right: "account"
+            size_hint: 0.6, 0.3
+            color_active: gch("#7e10cc")
+		    normal_color: gch("#3b0660")
+            font_size: 25
+            pos_hint: {"center_x": 0.5}
+        MDTextFieldRound:
+            id: email
+            font_name: 'fonts/unispace.ttf'
+            hint_text: "Your email adress"
+            icon_right: "email"
+            size_hint: 0.6, 0.3
+            color_active: gch("#7e10cc")
+		    normal_color: gch("#3b0660")
+            font_size: 25
+            pos_hint: {"center_x": 0.5}
+        MDTextFieldRound:
+            id: user
+            font_name: 'fonts/unispace.ttf'
+            hint_text: "username"
+            icon_right: "account"
+            size_hint: 0.6, 0.3
+            color_active: gch("#7e10cc")
+		    normal_color: gch("#3b0660")
+            font_size: 25
+            pos_hint: {"center_x": 0.5}
+        MDTextFieldRound:
+            id: passw
+            font_name: 'fonts/unispace.ttf'
+            hint_text: "password"
+            icon_right: "form-textbox-password"
+            size_hint: 0.6, 0.3
+            color_active: gch("#7e10cc")
+		    normal_color: gch("#3b0660")
+            width: 200
+            font_size: 25
+            pos_hint: {"center_x": 0.5}
+            password: True
+        MDTextFieldRound:
+            id: passw2
+            font_name: 'fonts/unispace.ttf'
+            hint_text: "Repeat password"
+            icon_right: "form-textbox-password"
+            size_hint: 0.6, 0.3
+            color_active: gch("#7e10cc")
+		    normal_color: gch("#3b0660")
+            width: 200
+            font_size: 25
+            pos_hint: {"center_x": 0.5}
+            password: True
+        MDRoundFlatButton:
+            font_name: 'fonts/Bock_Personaluse.otf'
+            text: "Accept"
+            font_size: 36
+            size_hint: 0.3, 0.1
+            pos_hint: {"center_x": 0.5}
+            on_press: self.parent.parent.signin()
+        MDRoundFlatButton:
+            font_name: 'fonts/Bock_Personaluse.otf'
+            text: "Clear"
+            font_size: 36
+            size_hint: 0.3, 0.1
+            pos_hint: {"center_x": 0.5}
+            on_press: self.parent.parent.clear()
+        MDFillRoundFlatButton:
+            font_name: 'fonts/Bock_Personaluse.otf'
+            text: "Back"
+            font_size: 36
+            size_hint: 0.3, 0.1
+            pos_hint: {"center_x": 0.5}
+            on_release: app.root.current = "main"
+        Widget:
+            size_hint_y: None
+            height: 10
+<AboutWindow>:
+    name: "about"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/Clouds2.jpg'
+    BoxLayout:
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'img/about.png'
+        id: AboutLayout
+        size_hint: 1, 1
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        orientation: 'vertical'
+        BoxLayout:
+            id: card
+            size_hint: 0.8, 0.8
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            elevation: 10
+            padding: 25
+            spacing: 25
+            orientation: 'vertical'
+            MDLabel:
+                id: about_label
+                multiline: True
+                text: "In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means comfort."
+                font_size: 55
+                color: hex('#121854')
+                size_hint: 0.6, 1
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                font_name: 'fonts/Rothenburg Decorative.ttf'
+                halign: 'center'
+                height: self.texture_size[1]
+                padding_y: 15
+        MDRoundFlatButton:
+            text: "Back"
+            font_size: 36
+            font_name: 'fonts/Rothenburg Decorative.ttf'
+            size_hint: 0.4, 0.1
+            pos_hint: {"center_x": 0.5}
+            on_release: app.root.current = 'main'
+<ListOptionsWindow>:
+    name: "ListOptionsWindow"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/Clouds1.jpg'
+    BoxLayout:
+        id: ListMainCard
+        size_hint: 0.8, 0.8
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 25
+        padding: 25
+        spacing: 40
+        orientation: 'vertical'
+        MDRoundFlatButton:
+            text: "Upcoming Tasks"
+            font_size: 36
+            font_name: 'fonts/Bock_Personaluse.otf'
+            size_hint: 1, 2
+            pos_hint: {"center_x": 0.5}
+            on_release: root.show_task()
+        MDRoundFlatButton:
+            text: "Finished Tasks"
+            font_size: 36
+            font_name: 'fonts/Bock_Personaluse.otf'
+            size_hint: 1, 2
+            pos_hint: {"center_x": 0.5}
+            on_release: root.show_finished_tasks()
+        MDRoundFlatButton:
+            text: "Add Task"
+            font_size: 36
+            font_name: 'fonts/Bock_Personaluse.otf'
+            size_hint: 1, 2
+            pos_hint: {"center_x": 0.5}
+            on_release: root.add_task()
+        MDRoundFlatButton:
+            text: "Delete Task"
+            font_size: 36
+            font_name: 'fonts/Bock_Personaluse.otf'
+            size_hint: 1, 2
+            pos_hint: {"center_x": 0.5}
+            on_release: root.show_delete_task()
+        MDRoundFlatButton:
+            text: "Calendar"
+            font_size: 36
+            font_name: 'fonts/Bock_Personaluse.otf'
+            size_hint: 1, 2
+            pos_hint: {"center_x": 0.5}
+            on_press: root.show_calendar()
+        MDRoundFlatButton:
+            text: "Log out"
+            font_size: 36
+            font_name: 'fonts/Bock_Personaluse.otf'
+            size_hint: 1, 2
+            pos_hint: {"center_x": 0.5}
+            on_press: root.logout()
+        MDFillRoundFlatButton:
+            text: "Back"
+            font_size: 36
+            font_name: 'fonts/Bock_Personaluse.otf'
+            size_hint: 1, 2
+            pos_hint: {"center_x": 0.5}
+            on_press: root.back()
+
+<AddingTask>:
+    name: "AddTask"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/Clouds1.jpg'
+    BoxLayout:
+        id: TaskCard
+        size_hint: 0.8, 0.8
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+        MDLabel:
+            id: Add_Task
+            text: "ADD NEW TASK"
+            font_size: 72
+            font_name: 'fonts/Bock_Personaluse.otf'
+            halign: 'center'
+            height: self.texture_size[1]
+            padding_y: 15
+        MDTextFieldRound:
+            id: task_name
+            font_name: 'fonts/unispace.ttf'
+            hint_text: "Name your task"
+            icon_right: "human"
+            size_hint: 0.8, 0.6
+            background_color: gch("#7e10cc")
+            opacity: 0.8
+            font_size: 25
+            pos_hint: {"center_x": 0.5}
+        MDTextFieldRound:
+            id: describe
+            multiline: True
+            font_name: 'fonts/unispace.ttf'
+            hint_text: "describe your task"
+            icon_right: "account"
+            size_hint: 0.8, 0.8
+            background_color: gch("#7e10cc")
+            opacity: 0.8
+            font_size: 15
+            pos_hint: {"center_x": 0.5}
+        MDTextFieldRound:
+            id: date
+            font_name: 'fonts/unispace.ttf'
+            hint_text: "Write the deadline"
+            icon_right: "email"
+            size_hint: 0.8, 0.6
+            background_color: gch("#7e10cc")
+            opacity: 0.8
+            font_size: 25
+            pos_hint: {"center_x": 0.5}
+        BoxLayout:
+            id: ImportanceCard
+            size_hint: 0.4, 0.4
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            elevation: 5
+            padding: 15
+            spacing: 15
+            orientation: 'horizontal'
+            MDLabel:
+                id: ImportanceHint
+                text: "VIP Task?"
+                font_size: 30
+                font_name: 'fonts/unispace.ttf'
+                halign: 'center'
+                height: self.texture_size[1]
+                padding_y: 15
+            CheckBox:
+                id: importance_check_box
+                size_hint: 0.5, 0.5
+        MDRoundFlatButton:
+            font_name: 'fonts/Bock_Personaluse.otf'
+            text: "Accept"
+            font_size: 36
+            size_hint: 0.3, 0.1
+            pos_hint: {"center_x": 0.5}
+            on_press: root.make_task()
+        MDFillRoundFlatButton:
+            font_name: 'fonts/Bock_Personaluse.otf'
+            text: "Back"
+            font_size: 36
+            size_hint: 0.3, 0.1
+            pos_hint: {"center_x": 0.5}
+            on_release: app.root.current = "ListOptionsWindow"
+        Widget:
+            size_hint_y: None
+            height: 10
+
+<TaskShow>:
+    name: "show_tasks"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/Clouds1.jpg'
+    BoxLayout:
+        id: Main2Layout
+        size_hint: 1, 1
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        orientation: 'vertical'
+        MDCard:
+            size_hint: 1, 0.2
+            pos_hint: {"center_x": 0.5}
+            elevation: 10
+            padding: 25
+            spacing: 25
+            orientation: 'horizontal'
+            color: hex('#674ea7')
+            MDLabel:
+                id: NormalTaskTitle
+                text: "NORMAL TASKS"
+                size_hint: 1, None
+                height: self.texture_size[1]
+                font_size: 100
+                font_name: 'fonts/Bock_Personaluse.otf'
+                halign: 'center'
+                padding_y: 15
+            MDLabel:
+                id: VIPTaskTitle
+                text: "VIP TASKS"
+                size_hint: 1, None
+                height: self.texture_size[1]
+                font_size: 100
+                font_name: 'fonts/Bock_Personaluse.otf'
+                halign: 'center'
+                padding_y: 15
+        BoxLayout:
+            id: MainLayout
+            size_hint: 1, 1
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            elevation: 10
+            padding: 25
+            spacing: 25
+            orientation: 'horizontal'
+            ScrollView:
+                size_hint: 1, 1
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                elevation: 10
+                padding: 25
+                spacing: 25
+                orientation: 'vertical'
+                GridLayout:
+                    cols: 1
+                    id: NormalTasksCard
+                    size_hint: 1, None
+                    height: NormalTaskTitle.height*100
+                    elevation: 1
+                    padding: 25
+                    spacing: 25
+
+            ScrollView:
+                size_hint: 1, 1
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                elevation: 10
+                padding: 25
+                spacing: 25
+                orientation: 'vertical'
+                GridLayout:
+                    cols: 1
+                    id: VIPTasksCard
+                    size_hint: 1, None
+                    height: VIPTaskTitle.height*100
+                    elevation: 1
+                    padding: 25
+                    spacing: 25
+    MDFillRoundFlatButton:
+        font_name: 'fonts/Bock_Personaluse.otf'
+        text: "Back"
+        font_size: 36
+        size_hint: 0.3, 0.1
+        pos_hint: {"center_x": 0.5}
+        on_release: app.root.current = "ListOptionsWindow"
+
+<DeleteTask>:
+    name: "delete_task"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/Clouds1.jpg'
+    BoxLayout:
+        id: DelLayout
+        size_hint: 1, 1
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+        ScrollView:
+            id: scroller
+            size_hint: 0.8, 1
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            elevation: 10
+            padding: 25
+            spacing: 25
+            orientation: 'vertical'
+            GridLayout:
+                cols: 1
+                id: TasksToDelete
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                size_hint: 1, None
+                height: 100*scroller.height
+                elevation: 1
+                padding: 25
+                spacing: 70
+        MDFillRoundFlatButton:
+            font_name: 'fonts/Bock_Personaluse.otf'
+            text: "Back"
+            font_size: 36
+            size_hint: 0.3, 0.1
+            pos_hint: {"center_x": 0.5}
+            on_release: app.root.current = "ListOptionsWindow"
+
+<CalendarWindow>:
+    name: 'calendar'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/Clouds1.jpg'
+    BoxLayout:
+        id: Screen2Layout
+        size_hint: 1, 1
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        orientation: 'vertical'
+        BoxLayout:
+            id: calendarlayout
+            size_hint: 1, 1
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            elevation: 10
+            padding: 25
+            spacing: 25
+            orientation: 'vertical'
+        MDFillRoundFlatButton:
+            font_name: 'fonts/Bock_Personaluse.otf'
+            text: "Back"
+            font_size: 36
+            size_hint: 0.3, 0.1
+            pos_hint: {"center_x": 0.5}
+            on_release: root.back()
+
+<FinishTask>:
+    name: "finish_task"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/Clouds1.jpg'
+    BoxLayout:
+        id: FinLayout
+        size_hint: 1, 1
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+        ScrollView:
+            id: scroller
+            size_hint: 0.8, 1
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            elevation: 10
+            padding: 25
+            spacing: 25
+            orientation: 'vertical'
+            GridLayout:
+                cols: 1
+                id: FinishedTasks
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                size_hint: 1, None
+                height: 100*scroller.height
+                elevation: 1
+                padding: 25
+                spacing: 70
+        MDFillRoundFlatButton:
+            font_name: 'fonts/Bock_Personaluse.otf'
+            text: "Back"
+            font_size: 36
+            size_hint: 0.3, 0.1
+            pos_hint: {"center_x": 0.5}
+            on_release: root.back()
+
+<PopupTask>:
+    name: "popup_task"
+    BoxLayout:
+        id: layout
+        size_hint: 1, 1
+        pos_hint: {"center_x": 0.6, "center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+        MDLabel:
+            id: name
+            text: ""
+            size_hint: 0.8, 0.5
+            font_size: 40
+            font_name: 'fonts/unispace.ttf'
+            halign: 'center'
+            padding_y: 15
+        MDLabel:
+            id: descr
+            text: ""
+            size_hint: 0.8, 0.6
+            font_size: 20
+            font_name: 'fonts/unispace.ttf'
+            halign: 'center'
+            padding_y: 15
+        MDLabel:
+            id: date
+            text: ""
+            size_hint: 0.8, 0.5
+            font_size: 40
+            font_name: 'fonts/unispace.ttf'
+            halign: 'center'
+            padding_y: 15
+
+<CustomDropDown>:
+    name: "dropdown"
+
+<OptionsWindow>:
+    name: "options_window"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'img/Clouds1.jpg'
+    BoxLayout:
+        size_hint: 1, 1
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+        BoxLayout:
+            id: OptLayout
+            size_hint: 1, 1
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            elevation: 10
+            padding: 25
+            spacing: 25
+            orientation: 'horizontal'
+            MDCard:
+                size_hint: 1, 1
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                elevation: 10
+                padding: 25
+                spacing: 25
+                orientation: 'vertical'
+                MDLabel:
+                    text: "Graphics"
+                    size_hint: 1, 0.5
+                    height: self.texture_size[1]
+                    font_size: 100
+                    font_name: 'fonts/Bock_Personaluse.otf'
+                    halign: 'center'
+                    padding_y: 15
+                BoxLayout:
+                    id: graphics_set_chooser
+                    size_hint: 1, 0.3
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                    orientation: "horizontal"
+                    MDLabel:
+                        text: "Change graphic's set"
+                        size_hint: 1, None
+                        height: self.texture_size[1]
+                        font_size: 30
+                        font_name: 'fonts/unispace.ttf'
+                        halign: 'center'
+                        padding_y: 15
+            MDCard:
+                size_hint: 1, 1
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                elevation: 10
+                padding: 25
+                spacing: 25
+                orientation: 'vertical'
+                MDLabel:
+                    text: "Sound"
+                    size_hint: 1, 1
+                    height: self.texture_size[1]
+                    font_size: 100
+                    font_name: 'fonts/Bock_Personaluse.otf'
+                    halign: 'center'
+                    padding_y: 15
+                BoxLayout:
+                    id: layout_slide
+                    size_hint: 1, 0.3
+                    orientation: "vertical"
+                    MDLabel:
+                        text: "Volume of the music"
+                        size_hint: 1, None
+                        height: self.texture_size[1]
+                        font_size: 20
+                        font_name: 'fonts/unispace.ttf'
+                        halign: 'center'
+                        padding_y: 15
+                    Slider:
+                        id: volume_slider
+                        min: 0
+                        max: 100
+                        step: 1
+                        orientation: 'horizontal'
+                        value_track: True
+                        value_track_color: .6, .4 , .8, 1
+                        on_touch_move: root.change_volume()
+                BoxLayout:
+                    size_hint: 1, 0.3
+                    orientation: "vertical"
+                    BoxLayout:
+                        size_hint: 1, 0.3
+                        orientation: "horizontal"
+                        MDLabel:
+                            text: "Mute"
+                            size_hint: 1, None
+                            height: self.texture_size[1]
+                            font_size: 20
+                            font_name: 'fonts/unispace.ttf'
+                            halign: 'center'
+                            padding_y: 15
+                        CheckBox:
+                            id: mute_checkbox
+                            size_hint: 0.5, 0.5
+                            on_active: root.on_mute_active(self.active)
+                BoxLayout:
+                    size_hint: 1, 0.3
+                    orientation: "vertical"
+                    BoxLayout:
+                        id: music_chooser
+                        size_hint: 1, 0.3
+                        orientation: "horizontal"
+                        MDLabel:
+                            text: "Choose the music"
+                            size_hint: 1, None
+                            height: self.texture_size[1]
+                            font_size: 30
+                            font_name: 'fonts/unispace.ttf'
+                            halign: 'center'
+                            padding_y: 15
+
+
+
+        MDFillRoundFlatButton:
+            font_name: 'fonts/Bock_Personaluse.otf'
+            text: "Back"
+            font_size: 36
+            size_hint: 0.3, 0.1
+            pos_hint: {"center_x": 0.5}
+            on_release: app.root.current = "main"

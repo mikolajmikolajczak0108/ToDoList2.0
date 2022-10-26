@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "no": 1,
+      "name": "Adam Kowalski",
+      "username": "AdKowal212",
+      "password": "Kot123",
+      "tel": "+1-392-404-1171",
+      "email": "kwlsk43@yahoo.com"
+    },
+    {
+      "no": 2,
+      "name": "Jacek Szmajchel",
+      "username": "JaczoSzmaj212",
+      "password": "Pies123",
+      "tel": "719-528-6934 x632",
+      "email": "JaSzma72@yahoo.com"
+    },
+    {
+      "no": 3,
+      "name": "Aleksander Nowak",
+      "username": "AlekNowak2112",
+      "password": "Drzewka0x123",
+      "tel": "985-341-3319",
+      "email": "NewAlex@gmail.com"
+    }
+  ]
+}
